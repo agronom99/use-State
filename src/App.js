@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
+  // let numbers =[1,3,6];
+  const [numbers, setNumbers] = React.useState([0]);
+
+  const addNumber = () => {
+    const Number = numbers.at(-1);
+    const newArr = [...numbers, Number+1]
+    setNumbers(newArr);
+    console.log(newArr);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {numbers.map((num) => (
+          <li key={num}>{num}</li>
+        ))}
+      </ul>
+      <button onClick={addNumber}>start</button>
     </div>
   );
 }

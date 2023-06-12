@@ -1,24 +1,17 @@
 import React from "react";
 import "./App.css";
+import List from "./List";
 
 function App() {
-  // let numbers =[1,3,6];
-  const [numbers, setNumbers] = React.useState([0]);
+  const [visibleList, setVisibleList] = React.useState();
 
-  const addNumber = () => {
-    const Number = numbers.at(-1);
-    const newArr = [...numbers, Number+1]
-    setNumbers(newArr);
-    console.log(newArr);
+  const toggleVisibleList = () => {
+    setVisibleList(visible => !visible );
   };
   return (
     <div className="App">
-      <ul>
-        {numbers.map((num) => (
-          <li key={num}>{num}</li>
-        ))}
-      </ul>
-      <button onClick={addNumber}>start</button>
+      {visibleList && <List />}
+      <button onClick={toggleVisibleList}>Показати / скрити список</button>
     </div>
   );
 }
